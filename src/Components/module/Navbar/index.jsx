@@ -45,14 +45,10 @@ const Navbar = () => {
 	const handleLogout = (e) => {
 		e.preventDefault();
 		deleteCookie("token", {
-			req,
-			res,
 			path: "/",
 			domain: ".vercel.app",
 		});
 		deleteCookie("users", {
-			req,
-			res,
 			path: "/",
 			domain: ".vercel.app",
 		});
