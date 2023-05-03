@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import dynamic from "next/dynamic";
-import Loading from "../Loading";
 
 const Navbar = () => {
 	const [background, setBackground] = useState(false);
@@ -13,7 +12,6 @@ const Navbar = () => {
 	const path = router.pathname;
 	const token = getCookie("token");
 	const users = getCookie("users");
-	const [isLoading, setIsLoading] = useState(false);
 
 	const isLogged = () => {
 		if (path !== "/" && !token) {
@@ -47,10 +45,14 @@ const Navbar = () => {
 	const handleLogout = (e) => {
 		e.preventDefault();
 		deleteCookie("token", {
+			req,
+			res,
 			path: "/",
 			domain: "mamarecipe-frontend.vercel.app",
 		});
 		deleteCookie("users", {
+			req,
+			res,
 			path: "/",
 			domain: "mamarecipe-frontend.vercel.app",
 		});
