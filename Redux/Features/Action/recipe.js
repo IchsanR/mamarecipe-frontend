@@ -169,7 +169,6 @@ export const updateRecipe = createAsyncThunk("recipe/updateRecipe", (args) => {
 			)
 			.then((response) => {
 				args.handleSuccess(response);
-				console.log(args.form);
 				resolve(response.data);
 			})
 			.catch((error) => {

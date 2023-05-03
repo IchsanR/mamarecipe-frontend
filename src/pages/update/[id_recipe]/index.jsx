@@ -49,7 +49,6 @@ export default function UpdateRecipe() {
 	};
 	const handlePost = (form) => {
 		const handleSuccess = (response) => {
-			console.log(response);
 			if (response.data.code === 200) {
 				Swal.fire({
 					title: "Success!",

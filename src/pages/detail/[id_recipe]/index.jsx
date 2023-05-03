@@ -53,7 +53,6 @@ export default function DetailRecipe() {
 		e.preventDefault();
 
 		const handleSuccess = (response) => {
-			console.log(response);
 			if (response.data.code === 200) {
 				Swal.fire({
 					title: "Success!",
@@ -80,7 +79,6 @@ export default function DetailRecipe() {
 		e.preventDefault();
 
 		const handleSuccess = (response) => {
-			console.log(response);
 			if (response.data.code === 200) {
 				Swal.fire({
 					title: "Success!",
