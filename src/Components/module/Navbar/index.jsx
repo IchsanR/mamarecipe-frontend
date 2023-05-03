@@ -48,13 +48,13 @@ const Navbar = () => {
 			req,
 			res,
 			path: "/",
-			domain: "mamarecipe-frontend.vercel.app",
+			domain: ".vercel.app",
 		});
 		deleteCookie("users", {
 			req,
 			res,
 			path: "/",
-			domain: "mamarecipe-frontend.vercel.app",
+			domain: ".vercel.app",
 		});
 		return router.push("/");
 	};
