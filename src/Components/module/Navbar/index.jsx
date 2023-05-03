@@ -44,14 +44,8 @@ const Navbar = () => {
 
 	const handleLogout = (e) => {
 		e.preventDefault();
-		deleteCookie("token", {
-			path: "/",
-			domain: ".vercel.app",
-		});
-		deleteCookie("users", {
-			path: "/",
-			domain: ".vercel.app",
-		});
+		deleteCookie("token");
+		deleteCookie("users");
 		return router.push("/");
 	};
 
