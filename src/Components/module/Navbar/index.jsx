@@ -46,8 +46,14 @@ const Navbar = () => {
 
 	const handleLogout = (e) => {
 		e.preventDefault();
-		deleteCookie("token", { path: "/", domain: "localhost" });
-		deleteCookie("users", { path: "/", domain: "localhost" });
+		deleteCookie("token", {
+			path: "/",
+			domain: "mamarecipe-frontend.vercel.app",
+		});
+		deleteCookie("users", {
+			path: "/",
+			domain: "mamarecipe-frontend.vercel.app",
+		});
 		return router.push("/");
 	};
 
