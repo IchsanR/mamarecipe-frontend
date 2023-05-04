@@ -31,7 +31,6 @@ export const getRecipeComment = createAsyncThunk(
 			axios
 				.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/comment/${recipeId}`)
 				.then((response) => {
-					console.log(response);
 					resolve(response.data);
 				})
 				.catch((error) => {
