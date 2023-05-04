@@ -2,7 +2,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const addComment = createAsyncThunk("comment/addComment", (args) => {
+export const addComment = createAsyncThunk("comment/addComment", (args) => {
 	return new Promise((resolve, reject) => {
 		axios
 			.post(
@@ -23,3 +23,20 @@ const addComment = createAsyncThunk("comment/addComment", (args) => {
 			});
 	});
 });
+
+export const getRecipeComment = createAsyncThunk(
+	"comment/getRecipeComment",
+	(recipeId) => {
+		return new Promise((resolve, reject) => {
+			axios
+				.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/comment/${recipeId}`)
+				.then((response) => {
+					console.log(response);
+					resolve(response.data);
+				})
+				.catch((error) => {
+					reject(error);
+				});
+		});
+	}
+);
