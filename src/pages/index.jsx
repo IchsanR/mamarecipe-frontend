@@ -11,7 +11,7 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import Header from "@/Components/base/Header";
 import { useDispatch, useSelector } from "react-redux";
-import { mostViewed } from "../../Redux/Features/Action/recipe";
+import { mostViewed, searchRecipe } from "../../Redux/Features/Action/recipe";
 import { useEffect, useState } from "react";
 import { Card, CardLoading } from "@/Components/module/Card";
 import { useRouter } from "next/router";
@@ -32,8 +32,9 @@ export default function Home() {
 		return state.recipe;
 	});
 	const [title, setTitle] = useState("");
-	const [page, setPage] = useState(1);
-	const [sortOrd, setSortOrd] = useState("asc");
+	const page = 1;
+	const sortOrd = "ASC";
+	const ordBy = "title";
 
 	useEffect(() => {
 		dispatch(mostViewed());
@@ -56,16 +57,22 @@ export default function Home() {
 
 	// Search
 
-	const routeTo = (title, page, sortOrd) => {
+	const routeTo = (title, page, sortOrder, orderBy) => {
 		router.push({
 			pathname: "/search",
-			query: { title: `${title}`, page: `${page}`, sortOrd: `${sortOrd}` },
+			query: {
+				title: `${title}`,
+				page: `${page}`,
+				sortOrder: `${sortOrder}`,
+				orderBy: `${orderBy}`,
+			},
 		});
+		dispatch(searchRecipe({ title, page, sortOrder, orderBy }));
 	};
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		routeTo(title, page, sortOrd);
+		routeTo(title, page, sortOrd, ordBy);
 	};
 
 	return (
@@ -105,7 +112,10 @@ export default function Home() {
 										onChange={(e) => setTitle(e.target.value)}
 										endAdornment={
 											<InputAdornment position="end">
-												<SearchIcon />
+												<SearchIcon
+													onClick={(e) => onSubmit(e)}
+													className="tw-cursor-pointer"
+												/>
 											</InputAdornment>
 										}
 										label="Search Recipe"

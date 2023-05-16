@@ -8,6 +8,7 @@ import {
 	getUserRecipe,
 	getUserSaved,
 	mostViewed,
+	searchRecipe,
 	updateRecipe,
 } from "../Action/recipe";
 
@@ -50,6 +51,12 @@ const recipeReducer = createReducer(initialState, (builder) => {
 		};
 	});
 	builder.addCase(getUserSaved.pending, (state) => {
+		return {
+			...state,
+			isLoading: true,
+		};
+	});
+	builder.addCase(searchRecipe.pending, (state) => {
 		return {
 			...state,
 			isLoading: true,
@@ -117,6 +124,14 @@ const recipeReducer = createReducer(initialState, (builder) => {
 			isError: false,
 		};
 	});
+	builder.addCase(searchRecipe.fulfilled, (state, action) => {
+		return {
+			...state,
+			isLoading: false,
+			data: action.payload,
+			isError: false,
+		};
+	});
 	builder.addCase(updateRecipe.fulfilled, (state, action) => {
 		return {
 			...state,
@@ -176,6 +191,14 @@ const recipeReducer = createReducer(initialState, (builder) => {
 		};
 	});
 	builder.addCase(getUserSaved.rejected, (state, action) => {
+		return {
+			...state,
+			isLoading: false,
+			data: action.payload,
+			isError: true,
+		};
+	});
+	builder.addCase(searchRecipe.rejected, (state, action) => {
 		return {
 			...state,
 			isLoading: false,

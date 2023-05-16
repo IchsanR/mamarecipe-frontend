@@ -160,6 +160,21 @@ export const getUserSaved = createAsyncThunk(
 	}
 );
 
+export const searchRecipe = createAsyncThunk("recipe/searchRecipe", (args) => {
+	return new Promise((resolve, reject) => {
+		axios
+			.get(
+				`${process.env.NEXT_PUBLIC_BACKEND_URL}/recipes/search?title=${args.title}&sortOrder=${args.sortOrder}&orderBy=${args.orderBy}&page=${args.page}`
+			)
+			.then((response) => {
+				resolve(response.data);
+			})
+			.catch((error) => {
+				reject(error);
+			});
+	});
+});
+
 export const updateRecipe = createAsyncThunk("recipe/updateRecipe", (args) => {
 	return new Promise((resolve, reject) => {
 		axios
